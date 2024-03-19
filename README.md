@@ -23,7 +23,7 @@ On the next page, at first I was confused that the page only display a blank whi
 
 With this fact, I've used `execute_script` again to instantly redirect the page directly to `https://challenge.longshotsystems.co.uk/ok` and when I checked the console logs on the page, alas log results. This is my expected outcome because I've already taken note of the websocket script within the page.
 
-I've noted that logs seems to be a bunch of encoded strings, but when I noticed that some ends with `==` which is common when encoding Base64 strings. I've first log and when decoded says:
+I've noted that logs seems to be a bunch of encoded strings, but when I noticed that some ends with `==` which is common when encoding Base64 strings. I've decoded the first log and when decoded it says:
 
 > "Implement a machine with instructions ADD, MOV, STORE and 16 integer registers.
 > 
