@@ -22,8 +22,6 @@ def scrape_longshot():
                 return numbers;
             """))
 
-    driver.execute_cdp_cmd("Log.enable", {})
-
     driver.execute_script(f"document.getElementById('answer').value = '{numbers}';")
     driver.execute_script(f"document.getElementById('name').value = 'Joween Flores';")
     driver.execute_script(f"submit()")
