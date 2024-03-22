@@ -9,4 +9,4 @@ def encode_base64(number):
 def decode_base64(encoded_string):
     match = re.search(r'"(.*?)"', encoded_string)
     extracted_string = match.group(1)
-    return base64.b64decode(extracted_string).decode("utf-8")
+    return base64.b64decode(extracted_string).decode()
