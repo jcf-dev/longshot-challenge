@@ -2,10 +2,12 @@ import time
 
 from selenium import webdriver
 from utils.encoding import decode_base64
-from utils.registers import execute_program
+from utils.registers import Registers
 
 
 def scrape_longshot():
+    registers = Registers()
+    
     options = webdriver.ChromeOptions()
     options.add_argument("--headless=new")
     options.set_capability("goog:loggingPrefs", {"browser": "INFO"})
@@ -39,7 +41,7 @@ def scrape_longshot():
         else:
             results.append(decode_base64(log["message"]))
 
-    encoded_answer = execute_program(results)
+    encoded_answer = registers.execute_program(results)
 
     ws_script = """
         ws.send("%s");

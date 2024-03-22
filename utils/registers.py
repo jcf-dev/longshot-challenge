@@ -14,30 +14,24 @@ class Registers:
     def store(self, val, dest_reg):
         self.registers[dest_reg] = val
 
+    def execute_program(self, instructions: list[str]):
 
-def sum_registers(registers):
-    return sum(registers)
+        for instruction in instructions:
+            instruction = instruction.replace("\"", "")
+            parts = instruction.split()
 
+            if parts[0] == "ADD":
+                val = int(parts[1])
+                dest = int(parts[3][1:])
+                src = int(parts[2][1:])
+                self.add(val, dest, src)
+            elif parts[0] == "MOV":
+                src = int(parts[1][1:])
+                dest = int(parts[2][1:])
+                self.mov(src, dest)
+            elif parts[0] == "STORE":
+                val = int(parts[1])
+                dest = int(parts[2][1:])
+                self.store(val, dest)
 
-def execute_program(instructions: list[str]):
-    registers = Registers()
-
-    for instruction in instructions:
-        instruction = instruction.replace("\"", "")
-        parts = instruction.split()
-
-        if parts[0] == "ADD":
-            val = int(parts[1])
-            dest = int(parts[3][1:])
-            src = int(parts[2][1:])
-            registers.add(val, dest, src)
-        elif parts[0] == "MOV":
-            src = int(parts[1][1:])
-            dest = int(parts[2][1:])
-            registers.mov(src, dest)
-        elif parts[0] == "STORE":
-            val = int(parts[1])
-            dest = int(parts[2][1:])
-            registers.store(val, dest)
-
-    return encode_base64(sum_registers(registers.registers))
+        return encode_base64(sum(self.registers))
